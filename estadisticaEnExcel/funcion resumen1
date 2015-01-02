@@ -1,13 +1,6 @@
-Saludos!
-Esta funcion permite calcular de un solo golpe estadisticas de interes de una lista cualquiera de valores dada. Entre estas estan: la media, mediana, moda, varianza, desviacion estandar, coef de variacion, cuartiles, minimo, maximo y rango. Se parece mucho a la funcion summary en lenguaje R.
-Ver en:
-https://github.com/jjsandovalucab/ 
-
 Option Base 1
 
-
 Public Function resumen1(datos As Variant) As Variant
-
 Dim datos2() As Single
 
 Dim elem As Variant
