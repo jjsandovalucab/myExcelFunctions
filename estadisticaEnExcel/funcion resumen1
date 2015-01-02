@@ -1,0 +1,80 @@
+```VBA
+
+Option Base 1
+
+Public Function resumen1(datos As Variant) As Variant
+
+Dim datos2() As Single
+
+Dim elem As Variant
+Dim suma As Single, media As Single, n As Single
+Dim varianza As Single, desvest As Single, mom2 As Single
+Dim CV As Single
+
+Dim minimo As Single
+Dim q1 As Single
+Dim mediana As Single
+Dim q3 As Single
+Dim maximo As Single
+
+'calculo de suma
+n = 0
+For Each elem In datos:
+    suma = suma + elem
+    n = n + 1
+Next elem
+
+ReDim datos2(1 To n)
+
+'calculo de promedio
+media = suma / n
+'calculo de mom2 y registro de datos2
+cont = 0
+For Each elem In datos:
+    cont = cont + 1
+    mom2 = mom2 + elem ^ 2
+    datos2(cont) = elem
+Next elem
+
+'calculo de varianza
+varianza = mom2 - media ^ 2
+'calculo de desvest
+desvest = (varianza) ^ 0.5
+'calculo de CV
+CV = desvest / media
+
+p025 = Application.RoundUp(0.25 * n, 0)
+p050 = Application.RoundUp(0.5 * n, 0)
+p075 = Application.RoundUp(0.75 * n, 0)
+
+q1 = datos2(p025)
+mediana = datos2(p050)
+q3 = datos2(p075)
+
+Dim resultados() As String
+Dim nombres As Variant
+nombres = Array("suma", "media", "varianza", "desvest" _
+, "CV", "q1", "mediana", "q3")
+ReDim resultados(1 To 2, 1 To UBound(nombres))
+
+MsgBox UBound(nombres)
+
+For j = 1 To UBound(nombres)
+    resultados(1, j) = nombres(j)
+Next j
+
+resultados(2, 1) = suma
+resultados(2, 2) = media
+resultados(2, 3) = varianza
+resultados(2, 4) = desvest
+resultados(2, 5) = CV
+resultados(2, 6) = q1
+resultados(2, 7) = mediana
+resultados(2, 8) = q3
+
+
+resumen1 = resultados
+
+
+End Function
+```
