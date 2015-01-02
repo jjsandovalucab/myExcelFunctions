@@ -1,6 +1,6 @@
 ```VBA
 
-Option Base 1
+//Option Base 1
 
 Public Function resumen1(datos As Variant) As Variant
 
@@ -76,5 +76,5 @@ resultados(2, 8) = q3
 resumen1 = resultados
 
 
-End Function
+End Function//
 ```
