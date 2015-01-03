@@ -20,12 +20,11 @@ For Each elem In datos:
     n = n + 1
 Next elem
 
-'ReDim datos2(1 To n) As Single
+
 
 'calculo de promedio
 media = suma / n
 'calculo de mom2 y registro de datos2
-'Dim datos2() As Single
 cont = 0
 For Each elem In datos:
     cont = cont + 1
