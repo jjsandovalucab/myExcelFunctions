@@ -1,12 +1,11 @@
 Option Base 1
 
-Public Function resumen1(datos As Variant) As Variant
-Dim datos2() As Single
-
+Public Function resumen1(datos As Range) As Variant
 Dim elem As Variant
 Dim suma As Single, media As Single, n As Single
 Dim varianza As Single, desvest As Single, mom2 As Single
 Dim CV As Single
+
 
 Dim minimo As Single
 Dim q1 As Single
@@ -21,16 +20,17 @@ For Each elem In datos:
     n = n + 1
 Next elem
 
-ReDim datos2(1 To n)
+'ReDim datos2(1 To n) As Single
 
 'calculo de promedio
 media = suma / n
 'calculo de mom2 y registro de datos2
+'Dim datos2() As Single
 cont = 0
 For Each elem In datos:
     cont = cont + 1
     mom2 = mom2 + elem ^ 2
-    datos2(cont) = elem
+    'datos2(cont) = elem
 Next elem
 
 'calculo de varianza
@@ -44,31 +44,35 @@ p025 = Application.RoundUp(0.25 * n, 0)
 p050 = Application.RoundUp(0.5 * n, 0)
 p075 = Application.RoundUp(0.75 * n, 0)
 
+Dim datos2 As Variant
+
+datos2 = insertsort(datos)
+minimo = datos2(1)
 q1 = datos2(p025)
 mediana = datos2(p050)
 q3 = datos2(p075)
+maximo = datos2(n)
 
 Dim resultados() As String
 Dim nombres As Variant
 nombres = Array("suma", "media", "varianza", "desvest" _
-, "CV", "minimo","q1", "mediana", "q3","maximo")
+, "CV", "minimo", "q1", "mediana", "q3", "maximo")
 ReDim resultados(1 To 2, 1 To UBound(nombres))
-
 
 For j = 1 To UBound(nombres)
     resultados(1, j) = nombres(j)
 Next j
 
-resultados(2, 1) = suma
-resultados(2, 2) = media
-resultados(2, 3) = varianza
-resultados(2, 4) = desvest
-resultados(2, 5) = CV
-resultados(2, 6) = minimo
-resultados(2, 7) = q1
-resultados(2, 8) = mediana
-resultados(2, 9) = q3
-resultados(2, 10) = maximo
+resultados(2, 1) = Round(suma, 4)
+resultados(2, 2) = Round(media, 4)
+resultados(2, 3) = Round(varianza, 4)
+resultados(2, 4) = Round(desvest, 4)
+resultados(2, 5) = Round(CV, 4)
+resultados(2, 6) = Round(minimo, 4)
+resultados(2, 7) = Round(q1, 4)
+resultados(2, 8) = Round(mediana, 4)
+resultados(2, 9) = Round(q3, 4)
+resultados(2, 10) = Round(maximo, 4)
 
 resumen1 = resultados
 
