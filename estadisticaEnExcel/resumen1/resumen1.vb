@@ -63,7 +63,7 @@ q3 = datos3(p075)
 maximo = datos3(n)
 
 'PASO 7: CONSTRUIR MATRIZ DE RESULTADOS
-la matriz de resultados debe ser un String porque los nombres son strings, 
+'la matriz de resultados debe ser un String porque los nombres son strings, 
 'y debe ser homogenea
 Dim resultados() As String
 Dim nombres As Variant
